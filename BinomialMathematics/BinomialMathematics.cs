@@ -111,14 +111,11 @@ public static class BinomialMathematics
             throw new ArgumentOutOfRangeException(nameof(numberOfFailures), "Number of failures cannot be negative.");
         }
 
-        // Calculate the binomial coefficient for (numberOfFailures + numberOfSuccesses - 1) choose (numberOfSuccesses - 1)
         var binomialCoefficient = Choose<T>(T.CreateChecked(numberOfFailures + numberOfSuccesses - 1), T.CreateChecked(numberOfSuccesses - 1));
 
-        // Calculate p^r and (1-p)^k
         var successProbabilityTerm = Pow(probabilityOfSuccess, numberOfSuccesses);
         var failureProbabilityTerm = Pow(T.One - probabilityOfSuccess, numberOfFailures);
 
-        // Multiply them together to get the result
         var result = binomialCoefficient * successProbabilityTerm * failureProbabilityTerm;
 
         return result;
